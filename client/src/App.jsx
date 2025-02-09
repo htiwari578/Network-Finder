@@ -1,27 +1,18 @@
 import React from 'react'
-import { auth, provider } from './utils/Firsebase'
-import { signInWithPopup } from 'firebase/auth'
+import { Route, Routes } from 'react-router-dom'
+
+import Login from './pages/login'
+import Home from './pages/Home'
 
 
 const App = () => {
-
-  const handleLogin = async ()=>{
-    const response = await signInWithPopup(auth , provider)
-    const user = response.user
-    const userData = {
-      name: user.displayName,
-      email: user.email,
-      avatar: user.photoURL,
-      phoneNumber: user.phoneNumber
-    }
-   
-  }
   return (
-    <div>
-      <h1 >Login with Google</h1>
-      <button onClick={handleLogin} className="font-medium">Google</button>
-    </div>
+    <Routes>
+      <Route path = '/' element = {<Home />} />
+      <Route path = '/login' element = {<Login />} />
+    </Routes>
   )
-}
 
+
+}
 export default App
